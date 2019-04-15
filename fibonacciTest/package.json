@@ -1,0 +1,14 @@
+{
+  "name": "fibonacci",
+  "version": "1.0.0",
+  "description": "fibonacci recursion",
+  "main": "fibonacciRecursive.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Christopher Bare",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.1.3"
+  }
+}
