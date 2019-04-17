@@ -1,1 +1,5 @@
-node_modules
+/fibonacciTest/node_modules
+/hello-world-angular/node_modules
+/JSTestDrivenDevelopment/node_modules
+/module-exports/node_modules
+/npmTest/node_modules
