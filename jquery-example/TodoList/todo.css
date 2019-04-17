@@ -1,0 +1,56 @@
+body {
+    background: #dfdfdf;
+}
+
+.container {
+    padding: 20px;
+    width: 333px;
+    margin: 0 auto;
+    margin-top: 40px;
+    background: white;
+    border-radius: 5px;
+}
+
+form {
+    display: inline-block;
+}
+
+input {
+    padding: 4px 66px 4px 5px;
+}
+
+#button {
+    display: inline-block;
+    background-color: red;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 2px;
+    padding: 5px 15px;
+}
+
+#button:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+ol {
+    padding-left: 20px;
+}
+
+ol li {
+    padding: 5px;
+    color: #000;
+}
+
+ol li:nth-child(even) {
+    background: #dfdfdf;
+}
+
+.strike {
+    text-decoration: line-through;
+}
+
+li:hover {
+    cursor: pointer;
+}

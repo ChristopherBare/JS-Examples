@@ -1,0 +1,20 @@
+{
+  "name": "npmtest",
+  "version": "1.0.0",
+  "description": "Its a test",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "test",
+    "stuff"
+  ],
+  "author": "Christopher Bare",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.3"
+  }
+}
