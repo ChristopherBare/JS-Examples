@@ -7,7 +7,7 @@ function fibonacci(num) {
 }
 
 let count = 1;
-for(let i = 0; i < 5; i++){
+for(let i = 0; i < 50; i++){
     console.log(count + ": " + fibonacci(i));
     count++;
 }
