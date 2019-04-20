@@ -5,7 +5,6 @@ import "../css/Shelf.css";
 import books from "../assets/books.json";
 
 class Shelf extends Component {
-  
   render() {
     return (
       <div>
