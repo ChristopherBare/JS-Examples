@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/Book.css";
-import "../images/things-fall-apart.jpg";
 
 const Book = ({ source }) => (
   <div className="col-sm-3">
