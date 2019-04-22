@@ -8,6 +8,7 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-scripts": "2.1.8",
+    "write-json-file": "^3.2.0",
     "yarn": "^1.15.2"
   },
   "scripts": {
