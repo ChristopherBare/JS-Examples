@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Book.css";
 
 const Book = ({ source }) => (
-  <div className="col-sm-3">
+  <div className="col-sm-4">
     <div className="card card-view">
       <img
         className="card-img-top"
