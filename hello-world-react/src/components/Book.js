@@ -1,12 +1,14 @@
 import React from "react";
 import "../css/Book.css";
 
+
+
 const Book = ({ source }) => (
   <div className="col-sm-4">
     <div className="card card-view">
       <img
         className="card-img-top"
-        src={require(`../${source.imageLink}`)}
+        src={source.key.length > 2 ? source.imageLink : require(`../${source.imageLink}`)}
         alt="Book Cover"
       />
       <div className="card-body">

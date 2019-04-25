@@ -1,16 +1,17 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import Book from "./Book";
 import Nav from "./Nav";
 import "../css/Shelf.css";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import _ from "lodash";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase";
 // Add the Firebase services that you want to use
 import "firebase/auth";
 import "firebase/database";
-
 
 const config = {
   apiKey: "AIzaSyBWFHBFeh3gam07ktK5y7fw_K0YI7i_lTU",
@@ -24,41 +25,45 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-
-
-
 class Shelf extends Component {
   constructor() {
     super();
+
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.getBooks = this.getBooks.bind(this);
-    this.state = { 
-      modalShow: false
-     };
-     
+
+    this.state = {
+      modalShow: false,
+      books: []
+    };
   }
-  getBooks() {
-    const booksList = [];
-    const bookRef = firebase.database().ref("/libraryapp-46269/");
-    bookRef.on('value', (snapshot) => {
-      let booksSnapshot = snapshot.val();
-      booksSnapshot.forEach((childSnapshot) => {
-        let book = childSnapshot.val();
-        book.key = childSnapshot.key;
-        console.log(book)
-        
-        booksList.push(book);
+
+  componentDidMount() {
+    const bookRef = database.ref("Book/");
+    bookRef.on("value", snapshot => {
+      this.getData(snapshot.val());
+    });
+  }
+
+  getData(values) {
+    let booksVal = values;
+    let bookList = _(booksVal)
+      .keys()
+      .map(bookKey => {
+        let cloned = _.clone(booksVal[bookKey]);
+        cloned.key = bookKey;
+        return cloned;
       })
-      console.log(booksList);
-       return booksList;
-    })
+      .value();
+
+    this.setState({
+      books: bookList
+    });
   }
   toggleModal = () => {
     this.setState({
       modalShow: !this.state.modalShow
     });
-    
   };
   handleClose = () => {
     this.setState({ modalShow: false });
@@ -67,23 +72,21 @@ class Shelf extends Component {
   handleShow = () => {
     this.setState({ modalShow: true });
   };
-  writeData(imageLink, title, author, pages, year, language, link){ database.ref("/libraryapp-46269/").push({
-      imageLink: imageLink,
-      title: title,
-      author : author,
-      pages : pages,
-      year : year,
-      language : language,
-      link : link
-    }, function(error) {
+  writeData = e => {
+    e.preventDefault();
+    let fields = e.target.elements;
+    let book = {};
+    for (let x of [...fields]) {
+      if (x.name) book[x.name] = x.value;
+    }
+    database.ref("Book/").push(book, function(error) {
       if (error) {
         alert("That didn't work, please try again.");
       } else {
         console.log("Successful submit!");
       }
     });
-  }
-
+  };
 
   render() {
     return (
@@ -99,9 +102,9 @@ class Shelf extends Component {
             </button>
             <br />
             <div className="row">
-              {/* {this.getBooks.map(book => (
-                <Book source={book} />
-              ))} */}
+              {this.state.books.map(book => (
+                <Book source={book} key={book.key} />
+              ))}
             </div>
           </div>
           <br />
@@ -121,7 +124,8 @@ class Shelf extends Component {
                 className="form-control mr-sm-2"
                 placeholder="Link to Image"
                 aria-label="link"
-                id="userImageLink"
+                id="imageLink"
+                name="imageLink"
                 required
               />
               <input
@@ -129,6 +133,7 @@ class Shelf extends Component {
                 placeholder="Title"
                 aria-label="Title"
                 id="title"
+                name="title"
                 required
               />
               <input
@@ -136,6 +141,7 @@ class Shelf extends Component {
                 placeholder="Author"
                 aria-label="Author"
                 id="author"
+                name="author"
                 required
               />
               <input
@@ -143,6 +149,7 @@ class Shelf extends Component {
                 placeholder="Pages"
                 aria-label="Pages"
                 id="pages"
+                name="pages"
                 required
               />
               <input
@@ -150,6 +157,7 @@ class Shelf extends Component {
                 placeholder="Year"
                 aria-label="Year"
                 id="year"
+                name="year"
                 required
               />
               <input
@@ -157,22 +165,21 @@ class Shelf extends Component {
                 placeholder="Language"
                 aria-label="Language"
                 id="language"
+                name="language"
                 required
               />
               <input
                 className="form-control mr-sm-2"
                 placeholder="Wikipedia Link"
                 aria-label="Wikipedia Link"
-                id="wikiLink"
+                id="link"
+                name="link"
                 required
               />
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
-              </Button>
-              <Button variant="secondary" onClick={this.getBooks()}>
-                getBooks
               </Button>
               <Button variant="primary" type="submit" form="modalForm">
                 Save
@@ -184,6 +191,5 @@ class Shelf extends Component {
     );
   }
 }
-
 
 export default Shelf;
