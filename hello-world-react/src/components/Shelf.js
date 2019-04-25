@@ -8,9 +8,8 @@ import _ from "lodash";
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase";
-// Add the Firebase services that you want to use
-import "firebase/auth";
-import "firebase/database";
+
+
 
 const config = {
   apiKey: "AIzaSyBWFHBFeh3gam07ktK5y7fw_K0YI7i_lTU",
