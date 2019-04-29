@@ -22,7 +22,7 @@ class App extends React.Component {
 
     this.state = {
       image: logo,
-      speed: 2
+      speed: 2000
     };
   }
   componentDidMount() {

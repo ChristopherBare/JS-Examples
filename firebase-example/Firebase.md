@@ -16,6 +16,10 @@ Functional databases such as the Realtime Database that is used in Firebase use 
 
 To add Fire base to an existing project, simply add the config to the top of the file:  
 
+```javascript
+import * as firebase from "firebase";
+```
+
 ```javascript 
 let config = {
   apiKey: "api-key",
