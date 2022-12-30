@@ -9,6 +9,6 @@
   "author": "Christopher Bare",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^6.1.3"
+    "mocha": "^10.2.0"
   }
 }
